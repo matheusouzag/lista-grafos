@@ -129,30 +129,6 @@ def criaListaAdjacencias(matriz):
     return listaAdj
 
 
-#def tipoGrafoM(matriz):
-#    tipo = '0'
-#    tipo2 = '0'
-#    qtd = np.shape(matriz)[0]
-
-#    if np.sum(np.diagonal(matriz)) > 0: # Avaliando se é um pseudografo
-#        tipo2 = '3'
-#    else:  # Avaliando se é um multigrafo
-#        for i in range(0, qtd):
-#            for j in range(0, qtd):
-#                if matriz[i][j] > 1:
-#                    tipo2 = '2'
-#                    break
-
-#    for vi in range(0, qtd): # Avaliando se é um grafo simples ou direcionado
-#        for vj in range(vi + 1, qtd):
-#            if matriz[vi][vj] == matriz[vj][vi]:
-#                tipo = '0'
-#            else:
-#                tipo = '1'
-
-#    res = (int(tipo2 + tipo))
-#    return res;
-
 def tipoGrafo(listaAdj):
     tipo2 = '0'
     for chave in listaAdj: # Loop para percorrer as chaves do dicionário
