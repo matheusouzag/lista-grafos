@@ -195,6 +195,30 @@ def insereVerticeLista(listaAdj):
 
     return listaAdj
 
+def removeArestaLista(listaAdj, vi, vj):
+    tipo = '0'
+
+    # Verificando se é um grafo simples ou direcionado
+    listas = listaAdj.keys()
+    for v in listas:
+        outros = listaAdj[v]
+        for outro in outros:
+            if v not in listaAdj[outro]:
+                tipo = '1'
+                break
+
+    if tipo == '0':
+        listaAdj[vi].pop()
+        listaAdj[vj].remove(vi)
+
+    else:
+        listaAdj[vi].pop(vj)
+
+    return listaAdj
+
+
+
+
 
 
 
