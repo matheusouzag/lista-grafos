@@ -14,7 +14,8 @@ def main(instancia):
     lista = g.criaListaAdjacencias(instanciaEscolhida)
     tipoLista = g.tipoGrafoLista(lista)
     densidadeLista = g.calcDensidadeLista(lista)
-    insereAresta = g.insereArestaLista(lista, vi, vj)
+    #insereAresta = g.insereArestaLista(lista, vi, vj)
+    insereVertice = g.insereVerticeLista(lista)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
     print(str(instancia))
@@ -23,7 +24,7 @@ def main(instancia):
     print(lista)
     print(tipoLista)
     print(densidadeLista)
-    print(insereAresta)
+    #print(insereAresta)
 
     # Para salvar em arquivo
     resultado = [str(instancia), matriz, instanciaEscolhida] # Lista de tipo misto com valores dos resultados
