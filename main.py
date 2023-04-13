@@ -12,7 +12,8 @@ def main(instancia):
     # matriz retorna o valor da quantidade de linhas e colunas da matriz instanciaEscolhida
     matriz = ds.qtdShape(instanciaEscolhida)
     lista = g.criaListaAdjacencias(instanciaEscolhida)
-    tipoLista = g.tipoGrafo(lista)
+    tipoLista = g.tipoGrafoLista(lista)
+    densidadeLista = g.calcDensidadeLista(lista)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
     print(str(instancia))
@@ -20,6 +21,7 @@ def main(instancia):
     print(instanciaEscolhida)
     print(lista)
     print(tipoLista)
+    print(densidadeLista)
 
     # Para salvar em arquivo
     resultado = [str(instancia), matriz, instanciaEscolhida] # Lista de tipo misto com valores dos resultados

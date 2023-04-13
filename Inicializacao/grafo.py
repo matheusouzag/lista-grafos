@@ -129,14 +129,14 @@ def criaListaAdjacencias(matriz):
     return listaAdj
 
 
-def tipoGrafo(listaAdj):
+def tipoGrafoLista(listaAdj):
     tipo2 = '0'
-    for chave in listaAdj: # Loop para percorrer as chaves do dicionário
+    for chave in listaAdj:
 
-        valores = listaAdj[chave] # Obtém os valores associados a cada chave
+        valores = listaAdj[chave]
 
-        if chave in valores: # Verifica se a chave está presente nos valores associados
-            tipo2 = '3'  # Se estiver, é um pseudografo
+        if chave in valores:
+            tipo2 = '3'
             break
         else:
             for i in listaAdj:
@@ -145,18 +145,27 @@ def tipoGrafo(listaAdj):
                         tipo2 = '2'
                         break
 
-    listaReversa = list(reversed(listaAdj.keys()))
-
-    for cha in listaAdj:
-        for o in range(listaReversa[0], -1, -1):
-            if listaAdj[cha] == listaAdj[o]:
-                tipo = '0'
-            else:
+    tipo = '0'
+    listas = listaAdj.keys()
+    for v in listas:
+        outros = listaAdj[v]
+        for outro in outros:
+            if v not in listaAdj[outro]:
                 tipo = '1'
 
     res = (int(tipo2 + tipo))
 
     return res
+def calcDensidadeLista(listaAdj):
+
+    V = len(listaAdj)
+    E = 0
+    for i in listaAdj:
+        qtd = len(listaAdj[i])
+        E = E + qtd
+    D = E / (V * (V - 1))
+
+    return (round(D,3))
 
 
 
