@@ -5,7 +5,7 @@ def main(instancia):
 
     # instanciaEscolhida retorna o grafo lido em uma matriz do tipo Numpy
     instanciaEscolhida = g.lerGrafo(instancia)
-    vi = 0
+    vi = 2
     vj = 2
     adjacencia = g.verificaAdjacencia(instanciaEscolhida, vi, vj)
     print(adjacencia)
@@ -16,7 +16,8 @@ def main(instancia):
     densidadeLista = g.calcDensidadeLista(lista)
     #insereAresta = g.insereArestaLista(lista, vi, vj)
     #insereVertice = g.insereVerticeLista(lista)
-    removeArestaLista = g.removeArestaLista(lista, vi, vj)
+    #removeArestaLista = g.removeArestaLista(lista, vi, vj)
+    removeVerticeLista = g.removeVerticeLista(lista,vi)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
     print(str(instancia))
@@ -26,7 +27,8 @@ def main(instancia):
     print(tipoLista)
     print(densidadeLista)
     #print(insereAresta)
-    print(removeArestaLista)
+    #print(removeArestaLista)
+    print(removeVerticeLista)
 
     # Para salvar em arquivo
     resultado = [str(instancia), matriz, instanciaEscolhida] # Lista de tipo misto com valores dos resultados

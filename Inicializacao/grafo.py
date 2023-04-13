@@ -216,6 +216,16 @@ def removeArestaLista(listaAdj, vi, vj):
 
     return listaAdj
 
+def removeVerticeLista(listaAdj, vi):
+
+    listaAdj.pop(vi)
+
+    for i in listaAdj:
+        if vi in listaAdj[i]:
+            listaAdj[i].remove(vi)
+
+    return listaAdj
+
 
 
 
