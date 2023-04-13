@@ -167,8 +167,46 @@ def calcDensidadeLista(listaAdj):
 
     return (round(D,3))
 
+#def insereAresta(matriz, vi, vj):
+#    tipo = '0'
+#    qtd = np.shape(matriz)[0]
 
+    # Verificando se é um grafo simples ou direcionado
+#    for i in range(0, qtd):
+#        for j in range(i + 1, qtd):
+#            if matriz[i][j] != matriz[j][i]:
+#                tipo = '1'
+#                break
 
+    # Inserindo a aresta na matriz de adjacência
+#    if tipo == '0':
+#        matriz[vi][vj] += 1
+#        matriz[vj][vi] += 1
+#    else:
+#        matriz[vi][vj] += 1
+
+#    return matriz
+
+def insereArestaLista(listaAdj, vi, vj):
+    tipo = '0'
+
+    # Verificando se é um grafo simples ou direcionado
+    listas = listaAdj.keys()
+    for v in listas:
+        outros = listaAdj[v]
+        for outro in outros:
+            if v not in listaAdj[outro]:
+                tipo = '1'
+                break
+
+    if tipo == '0':
+            listaAdj[vi].append(vj)
+            listaAdj[vj].insert(0, vi)
+
+    else:
+        listaAdj[vi].append(vj)
+
+    return listaAdj
 
 
 
