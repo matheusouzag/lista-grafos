@@ -1,24 +1,24 @@
 import sys
-from Inicializacao import (dataSet as ds, grafo as g)
+from Inicializacao import (lista as lis, matriz as ma)
 
 def main(instancia):
 
     # instanciaEscolhida retorna o grafo lido em uma matriz do tipo Numpy
-    instanciaEscolhida = g.lerGrafo(instancia)
+    instanciaEscolhida = ma.lerGrafo(instancia)
     vi = 0
     vj = 3
-    adjacencia = g.verificaAdjacencia(instanciaEscolhida, vi, vj)
+    adjacencia = ma.verificaAdjacencia(instanciaEscolhida, vi, vj)
     print(adjacencia)
     # matriz retorna o valor da quantidade de linhas e colunas da matriz instanciaEscolhida
-    matriz = ds.qtdShape(instanciaEscolhida)
-    lista = g.criaListaAdjacencias(instanciaEscolhida)
-    tipoLista = g.tipoGrafoLista(lista)
-    densidadeLista = g.calcDensidadeLista(lista)
-    #insereAresta = g.insereArestaLista(lista, vi, vj)
-    #insereVertice = g.insereVerticeLista(lista)
-    #removeArestaLista = g.removeArestaLista(lista, vi, vj)
-    #removeVerticeLista = g.removeVerticeLista(lista,vi)
-    verificaAdj = g.verificaAdjacenciaLista(lista, vi, vj)
+    matriz = lis.qtdShape(instanciaEscolhida)
+    lista = lis.criaListaAdjacencias(instanciaEscolhida)
+    tipoLista = lis.tipoGrafoLista(lista)
+    densidadeLista = lis.calcDensidadeLista(lista)
+    #insereAresta = lis.insereArestaLista(lista, vi, vj)
+    #insereVertice = lis.insereVerticeLista(lista)
+    #removeArestaLista = lis.removeArestaLista(lista, vi, vj)
+    #removeVerticeLista = lis.removeVerticeLista(lista,vi)
+    verificaAdj = lis.verificaAdjacenciaLista(lista, vi, vj)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
     print(str(instancia))
@@ -34,7 +34,7 @@ def main(instancia):
 
     # Para salvar em arquivo
     resultado = [str(instancia), matriz, instanciaEscolhida] # Lista de tipo misto com valores dos resultados
-    ds.salvaResultado(resultado) # Salva resultado em arquivo
+    lis.salvaResultado(resultado) # Salva resultado em arquivo
 
 '''Chamada a função main()
    Argumento Entrada: [1] dataset'''
