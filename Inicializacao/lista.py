@@ -162,3 +162,42 @@ def verificaAdjacenciaLista(listaAdj, vi, vj):
         return True
     else:
         return False
+
+
+def warshall(matriz): # Usando pseudocódigo disponibilizado na matéria
+    n = np.shape(matriz)[0]
+    R = np.copy(matriz)
+
+    for k in range(0,n):
+        for i in range(0,n):
+            for j in range (0,n):
+                if (R[i][j] == 1) or (R[i][k] == 1) and (R[k][j] == 1):
+                    R[i][j] = 1
+                else:
+                    R[i][j] = R[i][j]
+
+    return R
+
+
+def caminhoEuleriano(matriz): # Usando pseudocódigo disponibilizado na matéria
+    matriz = np.array(matriz)
+    n = np.shape(matriz)
+    total = 0
+    i = 0
+    while (total <= 2) and (i < n[0]):
+        grau = np.sum(matriz[i,:])
+        if grau % 2 == 1:
+            total += 1
+        i += 1
+    if total > 2:
+        return (False)
+    else:
+        return (True)
+
+
+
+
+
+
+
+
