@@ -195,6 +195,90 @@ def caminhoEuleriano(matriz): # Usando pseudocódigo disponibilizado na matéria
         return (True)
 
 
+def BFS(listaAdj, num):
+    seq = []
+    passou = {}
+
+    for v in listaAdj:
+        passou[v] = False
+
+    lista = []
+
+    while True:
+        v1 = None
+        for v in listaAdj:
+            if not passou[v]:
+                v1 = v
+                break
+
+        if v1 is None:
+            break
+
+        passou[v1] = True
+        lista.append(v1)
+
+        while lista:
+            vAtual = lista.pop(0)
+            seq.append(vAtual)
+
+            if vAtual == num:
+                if seq[0] == 0:
+                    seq.pop(0)
+
+            adjs = listaAdj[vAtual]
+
+            for adj in adjs:
+                if not passou[adj]:
+                    passou[adj] = True
+                    lista.append(adj)
+
+    seq.insert(0, num)  # Insere o número inicial no resultado
+    print(seq)
+
+
+def DFS(listaAdj, num, visitados=None):
+    if visitados is None:
+        visitados = [num]
+    else:
+        visitados.append(num)
+
+    for adj in listaAdj[num]:
+        if adj not in visitados:
+            DFS(listaAdj, adj, visitados)
+
+    if num == visitados[0]:
+        print(visitados)
+
+
+def DFS(listaAdj, num):
+    visitados = []
+    p = [num]
+    volta = False
+
+    while p:
+        v = p[-1]
+
+        if v not in visitados:
+            visitados.append(v)
+
+        vizinhos = listaAdj[v]
+
+        nVisitado = [vizinho for vizinho in vizinhos if vizinho not in visitados]
+
+        if nVisitado:
+            proxV = nVisitado[0]
+            p.append(proxV)
+            volta = False
+        else:
+            p.pop()
+            volta = True
+
+    res = [ver for ver in listaAdj.keys() if ver not in visitados]
+    visitados.extend(res)
+
+    print (visitados)
+
+
 
 
 
