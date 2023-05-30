@@ -322,6 +322,52 @@ def ordenacaoTopologica(listaAdj):
 
 
 
+def classificaArestas(listaAdj, v):
+    cor = {}
+    tipoAresta = {}
+    tempoD = {}
+    tempoT = {}
+    tempo = 0
+
+    for ver in listaAdj.keys():
+        cor[ver] = 'branco'
+        tempoD[ver] = 'oi'
+        tempoT[ver] = 'oi'
+
+    def visitaDFS(v):
+        nonlocal tempo
+        cor[v] = 'cinza'
+        tempo += 1
+        tempoD[v] = tempo
+
+        for vertice in listaAdj[v]:
+            if cor[vertice] == 'branco':
+                tipoAresta[(v, vertice)] = 'Tree'
+                visitaDFS(vertice)
+            elif cor[vertice] == 'cinza':
+                tipoAresta[(v, vertice)] = 'Back'
+            else:
+                if tempoD[v] < tempoD[vertice]:
+                    tipoAresta[(v, vertice)] = 'Forward'
+                else:
+                    tipoAresta[(v, vertice)] = 'Cross'
+
+        cor[v] = 'preto'
+        tempo += 1
+        tempoT[v] = tempo
+
+    for v in listaAdj.keys():
+        if cor[v] == 'branco':
+            visitaDFS(v)
+
+    res = ''
+    for (v, vertice) in tipoAresta.keys():
+        res += str(v) + ' ' + str(vertice) + ' ' + tipoAresta[(v, vertice)] + '\n'
+
+    return res
+
+
+
 
 
 
