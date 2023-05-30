@@ -236,7 +236,7 @@ def BFS(listaAdj, num):
     print(seq)
 
 
-def DFS(listaAdj, num, visitados=None):
+def DFSn(listaAdj, num, visitados=None):
     if visitados is None:
         visitados = [num]
     else:
@@ -244,7 +244,7 @@ def DFS(listaAdj, num, visitados=None):
 
     for adj in listaAdj[num]:
         if adj not in visitados:
-            DFS(listaAdj, adj, visitados)
+            DFSn(listaAdj, adj, visitados)
 
     if num == visitados[0]:
         print(visitados)
@@ -277,6 +277,62 @@ def DFS(listaAdj, num):
     visitados.extend(res)
 
     print (visitados)
+
+
+def ordenacaoTopologica(listaAdj):
+    L = {}
+    cor = {}
+    tipoAresta = {}
+    tempoD = {}
+    tempoT = {}
+    tempo = 0
+
+    def visitaDFS(v):
+        nonlocal tempo
+        cor[v] = 'cinza'
+        tempo += 1
+        tempoD[v] = tempo
+
+        for vertice in listaAdj[v]:
+            if cor.get(vertice) == 'branco':
+                tipoAresta[(v, vertice)] = 'Tree'
+                visitaDFS(vertice)
+            elif cor.get(vertice) == 'cinza':
+                tipoAresta[(v, vertice)] = 'Back'
+            else:
+                if tempoD[v] < tempoD[vertice]:
+                    tipoAresta[(v, vertice)] = 'Forward'
+                else:
+                    tipoAresta[(v, vertice)] = 'Cross'
+
+        cor[v] = 'preto'
+        tempo += 1
+        tempoT[v] = tempo
+        L[v] = tempo
+
+    for v in listaAdj:
+        cor[v] = 'branco'
+        tempoT[v] = 0
+
+    for v in listaAdj:
+        if cor[v] == 'branco':
+            visitaDFS(v)
+
+    return list(sorted(L, key=L.get, reverse=True))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

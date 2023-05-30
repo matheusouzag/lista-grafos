@@ -19,18 +19,23 @@ def main(instancia):
     #removeArestaLista = lis.removeArestaLista(lista, vi, vj)
     #removeVerticeLista = lis.removeVerticeLista(lista,vi)
     verificaAdj = lis.verificaAdjacenciaLista(lista, vi, vj)
+    #res = lis.classificaArestas(lista, vi)
+    #ordem = lis.ordenacaoTopologica(lista)
+    tempo = lis.temposVertices(lista,vi)
+    dag = lis.verificaDAG(lista)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
-    print(str(instancia))
-    print(matriz)
-    print(instanciaEscolhida)
-    print(lista)
-    print(tipoLista)
-    print(densidadeLista)
+    #print(str(instancia))
+    #print(matriz)
+    #print(instanciaEscolhida)
+    #print(lista)
+    #print(tipoLista)
+    #print(densidadeLista)
     #print(insereAresta)
     #print(removeArestaLista)
     #print(removeVerticeLista)
-    print(verificaAdj)
+    print(dag)
+
 
     # Para salvar em arquivo
     resultado = [str(instancia), matriz, instanciaEscolhida] # Lista de tipo misto com valores dos resultados
