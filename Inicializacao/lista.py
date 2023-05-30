@@ -396,7 +396,37 @@ def temposVertices(listaAdj, v):
 
     return resFinal
 
+def verificaDAG(listaAdj):
+    L = []
+    S = []
+    E = []
 
+    # Inicializa os vértices sem arcos de entrada
+    for v in listaAdj:
+        if not any(v in adj for adj in listaAdj.values()):
+            S.append(v)
+
+    # Constrói a lista de arestas
+    for v in listaAdj:
+        for w in listaAdj[v]:
+            E.append((v, w))
+
+    while S:
+        v = S.pop(0)
+        L.append(v)
+
+        # Remove o arco (v, w) de E e atualiza S
+        for arc in list(E):
+            if arc[0] == v:
+                w = arc[1]
+                E.remove(arc)
+                if not any(w == adj[1] for adj in E):
+                    S.append(w)
+
+    if E:
+        return "NÃO DAG"
+    else:
+        return "DAG"
 
 
 
