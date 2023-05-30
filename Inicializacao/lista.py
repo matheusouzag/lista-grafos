@@ -367,6 +367,35 @@ def classificaArestas(listaAdj, v):
     return res
 
 
+def temposVertices(listaAdj, v):
+    tempoD = {}
+    tempoT = {}
+    t = 0
+    def visitaDFS(ver, t):
+        t += 1
+        tempoD[ver] = t
+
+        for adj in listaAdj[ver]:
+            if adj not in tempoD:
+                t = visitaDFS(adj, t)
+
+        t += 1
+        tempoT[ver] = t
+        return t
+
+    t = visitaDFS(v, t)
+
+    for ver in listaAdj:
+        if ver not in tempoD:
+            t = visitaDFS(ver, t)
+
+    resFinal = {}
+    for ver in listaAdj:
+        if ver in tempoD:
+            resFinal[ver] = "{}/{}".format(tempoD[ver], tempoT[ver])
+
+    return resFinal
+
 
 
 
