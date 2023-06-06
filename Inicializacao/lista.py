@@ -428,8 +428,90 @@ def verificaDAG(listaAdj):
     else:
         return "DAG"
 
+import numpy as np
+
+def dijkstra(matriz, vOrigem, vDestino):
+    num_vertices = len(matriz)
+
+    # Inicialização dos custos e rotas
+    custo = np.full(num_vertices, float('inf'), dtype=float)
+    rota = np.zeros(num_vertices, dtype=int)
+    custo[vOrigem] = 0
+
+    A = set(range(num_vertices))
+    F = set()
+
+    while A:
+        v = min(A, key=lambda x: custo[x])  # Vértice em A com menor custo[v]
+        F.add(v)
+        A.remove(v)
+
+        for u in range(num_vertices):
+            if u not in F:
+                if matriz[v][u] != -1:  # Verifica se há uma conexão entre v e u
+                    if custo[v] + matriz[v][u] < custo[u]:
+                        custo[u] = custo[v] + matriz[v][u]
+                        rota[u] = v
+
+    caminho = []
+    v = vDestino
+    while v != vOrigem:
+        caminho.append(v)
+        v = rota[v]
+    caminho.append(vOrigem)
+    caminho.reverse()
+
+    custo_minimo = int(custo[vDestino])
+
+    return (caminho, custo_minimo)
 
 
+import numpy as np
+
+def bellmanFord(matriz, vOrigem, vDestino):
+    matriz = np.array(matriz)
+    V = matriz.shape[0]
+    custo = [float('inf')] * V
+    rota = [-1] * V
+
+    custo[vOrigem] = 0
+
+    for i in range(V - 1):
+        for v in range(V):
+            for u in range(V):
+                if matriz[v, u] != -1:  # Verifica se a aresta existe (valor diferente de -1)
+                    if custo[u] > custo[v] + matriz[v, u]:
+                        custo[u] = custo[v] + matriz[v, u]
+                        rota[u] = v
+
+    for v in range(V):
+        for u in range(V):
+            if matriz[v, u] != -1:  # Verifica se a aresta existe (valor diferente de -1)
+                if custo[u] > custo[v] + matriz[v, u]:
+                    return False
+
+    caminho = [vDestino]
+    custo_caminho = custo[vDestino]
+
+    while vDestino != vOrigem:
+        vDestino = rota[vDestino]
+        caminho.insert(0, vDestino)
+
+    return (caminho, custo_caminho)
+
+
+def floydWarshall(matriz):
+    n = len(matriz)
+    D = np.copy(matriz)
+
+    for k in range(n):
+        for v in range(n):
+            for u in range(n):
+                if D[v][k] != -1 and D[k][u] != -1:
+                    if D[v][u] == -1 or D[v][u] > D[v][k] + D[k][u]:
+                        D[v][u] = D[v][k] + D[k][u]
+
+    return D
 
 
 
