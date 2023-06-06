@@ -466,7 +466,6 @@ def dijkstra(matriz, vOrigem, vDestino):
     return (caminho, custo_minimo)
 
 
-import numpy as np
 
 def bellmanFord(matriz, vOrigem, vDestino):
     matriz = np.array(matriz)
@@ -500,18 +499,23 @@ def bellmanFord(matriz, vOrigem, vDestino):
     return (caminho, custo_caminho)
 
 
+
 def floydWarshall(matriz):
     n = len(matriz)
     D = np.copy(matriz)
 
-    for k in range(n):
-        for v in range(n):
-            for u in range(n):
-                if D[v][k] != -1 and D[k][u] != -1:
-                    if D[v][u] == -1 or D[v][u] > D[v][k] + D[k][u]:
-                        D[v][u] = D[v][k] + D[k][u]
+    D[D == -1] = 99999
 
-    return D
+    for k in range(0, n):
+        for v in range(0, n):
+            for u in range(0, n):
+                if D[v][u] > D[v][k] + D[k][u]:
+                    D[v][u] = D[v][k] + D[k][u]
+
+    D[D == 99999] = -1
+
+    return D.tolist()
+
 
 
 
