@@ -24,7 +24,7 @@ def main(instancia):
     #tempo = lis.temposVertices(lista,vi)
     #dag = lis.verificaDAG(lista)
     #dij = lis.dijkstra(matriz, vi, vj)
-    pri = lis.prim(instanciaEscolhida)
+    kru = lis.kruskal(instanciaEscolhida)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
     #print(str(instancia))
@@ -37,7 +37,7 @@ def main(instancia):
     #print(removeArestaLista)
     #print(removeVerticeLista)
     #print(dag)
-    print(pri)
+    print(kru)
 
 
     # Para salvar em arquivo

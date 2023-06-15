@@ -544,6 +544,50 @@ def prim(matriz_adjacencia):
 
     return (f"{T} {round(custo_total)}")
 
+def find(p, i):
+    if p[i] == i:
+        return i
+    return find(p, p[i])
+
+def uniao(p, ord, x, y):
+    x1 = find(p, x)
+    y1 = find(p, y)
+
+    if ord[x1] < ord[y1]:
+        p[x1] = y1
+    elif ord[x1] > ord[y1]:
+        p[y1] = x1
+    else:
+        p[y1] = x1
+        ord[x1] += 1
+
+def kruskal(matriz):
+    num = len(matriz)
+    p = [i for i in range(num)]
+    ord = [0] * num
+    E = []
+
+    for i in range(num):
+        for j in range(i + 1, num):
+            if matriz[i][j] != 0:
+                E.append((i, j, matriz[i][j]))
+
+    E.sort(key=lambda x: x[2])  # Peso sendo ordenado
+
+    T = []
+    custo_total = 0
+
+    for k in E:
+        v, u, peso = k
+        v1 = find(p, v)
+        u1 = find(p, u)
+
+        if v1 != u1:
+            T.append((v, u))
+            custo_total += peso
+            uniao(p, ord, v1, u1)
+
+    return (f"{T} {round(custo_total)}")
 
 
 
