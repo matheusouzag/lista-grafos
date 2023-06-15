@@ -517,6 +517,35 @@ def floydWarshall(matriz):
     return D.tolist()
 
 
+def prim(matriz_adjacencia):
+    qtd = len(matriz_adjacencia)
+    v = 0
+    S = {v}
+    N = set(range(qtd))
+    N.remove(v)
+    T = []
+    custo_total = 0
+
+    while len(T) < qtd - 1:
+        minpeso = float('inf')
+        minaresta = None
+
+        for sel in S:
+            for naosel in N:
+                if matriz_adjacencia[sel][naosel] > 0 and matriz_adjacencia[sel][naosel] < minpeso:
+                    minpeso = matriz_adjacencia[sel][naosel]
+                    minaresta = (sel, naosel)
+
+        v, u = minaresta
+        S.add(u)
+        N.remove(u)
+        T.append(minaresta)
+        custo_total += minpeso  # Custo total
+
+    return (f"{T} {round(custo_total)}")
+
+
+
 
 
 

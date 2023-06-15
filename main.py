@@ -23,8 +23,8 @@ def main(instancia):
     #ordem = lis.ordenacaoTopologica(lista)
     #tempo = lis.temposVertices(lista,vi)
     #dag = lis.verificaDAG(lista)
-    dij = lis.dijkstra(matriz, vi, vj)
-
+    #dij = lis.dijkstra(matriz, vi, vj)
+    pri = lis.prim(instanciaEscolhida)
 
     # Prints dos resultados obtidos, testando todas as funções para entrega separada
     #print(str(instancia))
@@ -37,7 +37,7 @@ def main(instancia):
     #print(removeArestaLista)
     #print(removeVerticeLista)
     #print(dag)
-    print(dij)
+    print(pri)
 
 
     # Para salvar em arquivo
